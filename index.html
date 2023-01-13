@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Weather App</title>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"
       integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw=="
@@ -34,81 +34,83 @@
 
   <body>
     <div class="container">
-      <form class="search-bar">
-        <div class="row">
-          <div class="col-8">
-            <input
-              type="text"
-              class="form-control search-input"
-              placeholder="Search"
+      <div class="app">
+        <form class="search-bar">
+          <div class="row">
+            <div class="col-6">
+              <input
+                type="text"
+                class="form-control search-input"
+                placeholder="Search"
+              />
+            </div>
+            <div class="col-3">
+              <button type="submit" class="btn btn-primary search-btn">
+                Search
+              </button>
+            </div>
+            <div class="col-3">
+              <button type="button" class="btn btn-success current">
+                Current
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="row p-2">
+          <div class="col-5">
+            <img
+              src="src/images/partly_cloudy.png"
+              alt="weather icon"
+              class="main-icon"
             />
+            <span class="temperature">7°C</span>
+            <a href="" class="celcius">°C </a>|
+            <a href="" class="fahranhite">°F</a>
           </div>
-          <div class="col-2">
-            <button type="submit" class="btn btn-primary search-btn">
-              Search
-            </button>
+          <div class="col-4 detail">
+            <p class="city">Tehran</p>
+            <span class="day">Saturday</span> <span class="time">11:49</span>
+            <p>Haze</p>
           </div>
-          <div class="col-2">
-            <button type="button" class="btn btn-success current">
-              Current
-            </button>
-          </div>
-        </div>
-      </form>
-      <div class="row p-5">
-        <div class="col-5">
-          <img
-            src="src/images/partly_cloudy.png"
-            alt="weather icon"
-            class="main-icon"
-          />
-          <span class="temperature">7°C</span>
-          <a href="" class="celcius">°C </a>|
-          <a href="" class="fahranhite">°F</a>
-        </div>
-        <div class="col-4 detail">
-          <p class="city">Tehran</p>
-          <span class="day">Saturday</span> <span class="time">11:49</span>
-          <p>Haze</p>
-        </div>
 
-        <div class="col-3 other">
-          <span>Percipitation: <span>45%</span></span>
-          <br />
-          <span>Wind: <span>2km/h</span></span>
+          <div class="col-3 other">
+            <span>Percipitation: <span>45%</span></span>
+            <br />
+            <span>Wind: <span>2km/h</span></span>
+          </div>
         </div>
-      </div>
-      <hr />
-      <div class="row p-2 forecast">
-        <div class="col next-days">
-          <p>Sunday</p>
-          <img src="src/images/partly_cloudy.png" alt="weather icon" />
-          <br />
-          <span>7<span>°C</span></span>
-        </div>
-        <div class="col next-days">
-          <p>Sunday</p>
-          <img src="src/images/partly_cloudy.png" alt="weather icon" />
-          <br />
-          <span>7<span>°C</span></span>
-        </div>
-        <div class="col next-days">
-          <p>Sunday</p>
-          <img src="src/images/partly_cloudy.png" alt="weather icon" />
-          <br />
-          <span>7<span>°C</span></span>
-        </div>
-        <div class="col next-days">
-          <p>Sunday</p>
-          <img src="src/images/partly_cloudy.png" alt="weather icon" />
-          <br />
-          <span>7<span>°C</span></span>
-        </div>
-        <div class="col next-days">
-          <p>Sunday</p>
-          <img src="src/images/partly_cloudy.png" alt="weather icon" />
-          <br />
-          <span>7<span>°C</span></span>
+        <hr />
+        <div class="row p-2 forecast">
+          <div class="col next-days">
+            <p>Sunday</p>
+            <img src="src/images/partly_cloudy.png" alt="weather icon" />
+            <br />
+            <span>7<span>°C</span></span>
+          </div>
+          <div class="col next-days">
+            <p>Sunday</p>
+            <img src="src/images/partly_cloudy.png" alt="weather icon" />
+            <br />
+            <span>7<span>°C</span></span>
+          </div>
+          <div class="col next-days">
+            <p>Sunday</p>
+            <img src="src/images/partly_cloudy.png" alt="weather icon" />
+            <br />
+            <span>7<span>°C</span></span>
+          </div>
+          <div class="col next-days">
+            <p>Sunday</p>
+            <img src="src/images/partly_cloudy.png" alt="weather icon" />
+            <br />
+            <span>7<span>°C</span></span>
+          </div>
+          <div class="col next-days">
+            <p>Sunday</p>
+            <img src="src/images/partly_cloudy.png" alt="weather icon" />
+            <br />
+            <span>7<span>°C</span></span>
+          </div>
         </div>
       </div>
       <span
