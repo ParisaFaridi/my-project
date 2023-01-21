@@ -11,41 +11,9 @@ let humidity = document.querySelector("#humidity");
 let wind = document.querySelector("#wind");
 let desc = document.querySelector("#desc");
 let icon = document.querySelector(".main-icon");
-let date = new Date();
-let week = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
 let temp = 7;
 let apiKey = "62bc298785543e137bc6756e514eb1c3";
 let baseURL = `https://api.openweathermap.org/data/2.5/weather?`;
-
-function searchCity(cityIn) {
-  axios
-    .get(`${baseURL}q=${cityIn}&appid=${apiKey}&&units=metric`)
-    .then(function (response) {
-      temp = response.data.main.temp;
-      temperature.innerHTML = `${Math.round(temp)}°C`;
-      city.innerHTML = response.data.name;
-      console.log(response.data);
-      humidity.innerHTML = response.data.main.humidity;
-      wind.innerHTML = response.data.wind.speed;
-      const str = response.data.weather[0].description;
-      const str2 = str.charAt(0).toUpperCase() + str.slice(1);
-      desc.innerHTML = str2;
-      icon.setAttribute(
-        "src",
-        `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-      );
-    });
-}
-day.innerHTML = week[date.getDay()];
-time.innerHTML = `${date.getHours()}:${date.getMinutes()}`;
 
 searchBtn.addEventListener("click", function (event) {
   event.preventDefault();
@@ -71,6 +39,29 @@ currentBtn.addEventListener("click", function (event) {
   showCurrentLocation();
 });
 
+function setDate() {
+  let date = new Date();
+  let week = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  day.innerHTML = week[date.getDay()];
+  time.innerHTML = `${date.getHours()}:${date.getMinutes()}`;
+}
+
+function searchCity(cityIn) {
+  axios
+    .get(`${baseURL}q=${cityIn}&appid=${apiKey}&&units=metric`)
+    .then(function (response) {
+      displayTemp(response.data);
+    });
+}
+
 function showCurrentLocation() {
   let lon = 0;
   let lat = 0;
@@ -82,9 +73,22 @@ function showCurrentLocation() {
   axios
     .get(`${baseURL}lat=${lat}&lon=${lon}&appid=${apiKey}&&units=metric`)
     .then(function (response) {
-      temp = response.data.main.temp;
-      console.log(lat, lon);
-      temperature.innerHTML = `${Math.round(temp)}°C`;
-      city.innerHTML = response.data.name;
+      displayTemp(response.data);
     });
 }
+
+function displayTemp(data) {
+  temp = data.main.temp;
+  temperature.innerHTML = `${Math.round(temp)}°C`;
+  city.innerHTML = data.name;
+  humidity.innerHTML = data.main.humidity;
+  wind.innerHTML = Math.round(data.wind.speed);
+  const str = data.weather[0].description;
+  const str2 = str.charAt(0).toUpperCase() + str.slice(1);
+  desc.innerHTML = str2;
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+  );
+}
+setDate();
