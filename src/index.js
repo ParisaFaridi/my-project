@@ -4,8 +4,8 @@ let city = document.querySelector(".city");
 let searchBtn = document.querySelector(".search-btn");
 let searchInput = document.querySelector(".search-input");
 let temperature = document.querySelector(".temperature");
-let toCelciusBtn = document.querySelector(".celcius");
-let toFahranhiteBtn = document.querySelector(".fahranhite");
+let toCelciusBtn = document.querySelector("#celcius");
+let toFahranhiteBtn = document.querySelector("#fahranhite");
 let currentBtn = document.querySelector(".current");
 let humidity = document.querySelector("#humidity");
 let wind = document.querySelector("#wind");
@@ -21,10 +21,10 @@ let week = [
   "Friday",
   "Saturday",
 ];
-
 let temp = 7;
 let apiKey = "62bc298785543e137bc6756e514eb1c3";
 let baseURL = `https://api.openweathermap.org/data/2.5/weather?`;
+
 function searchCity(cityIn) {
   axios
     .get(`${baseURL}q=${cityIn}&appid=${apiKey}&&units=metric`)
@@ -46,6 +46,7 @@ function searchCity(cityIn) {
 }
 day.innerHTML = week[date.getDay()];
 time.innerHTML = `${date.getHours()}:${date.getMinutes()}`;
+
 searchBtn.addEventListener("click", function (event) {
   event.preventDefault();
   if (searchInput.value === null || searchInput.value === "") {
@@ -55,22 +56,28 @@ searchBtn.addEventListener("click", function (event) {
 });
 toCelciusBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  temperature.innerHTML = `${temp}°C`;
+  temperature.innerHTML = `${Math.round(temp)}°C`;
+  toFahranhiteBtn.classList.remove("active");
+  toCelciusBtn.classList.add("active");
 });
 toFahranhiteBtn.addEventListener("click", function (event) {
   event.preventDefault();
   temperature.innerHTML = `${Math.round(temp * 1.8 + 32)}°F`;
+  toFahranhiteBtn.classList.add("active");
+  toCelciusBtn.classList.remove("active");
 });
 currentBtn.addEventListener("click", function (event) {
   event.preventDefault();
   showCurrentLocation();
 });
+
 function showCurrentLocation() {
   let lon = 0;
   let lat = 0;
   navigator.geolocation.getCurrentPosition(function (position) {
     lon = position.coords.longitude;
     lat = position.coords.latitude;
+    console.log(lat, lon);
   });
   axios
     .get(`${baseURL}lat=${lat}&lon=${lon}&appid=${apiKey}&&units=metric`)
