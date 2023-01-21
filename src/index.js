@@ -50,8 +50,16 @@ function setDate() {
     "Friday",
     "Saturday",
   ];
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   day.innerHTML = week[date.getDay()];
-  time.innerHTML = `${date.getHours()}:${date.getMinutes()}`;
+  time.innerHTML = `${hours}:${minutes}`;
 }
 
 function searchCity(cityIn) {
