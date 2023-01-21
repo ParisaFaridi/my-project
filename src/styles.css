@@ -12,10 +12,7 @@ div {
   text-align: center;
   margin: auto;
 }
-.main-icon {
-  width: 150px;
-  height: 150px;
-}
+
 .temperature {
   font-size: 30px;
   font-weight: bold;

@@ -7,6 +7,10 @@ let temperature = document.querySelector(".temperature");
 let toCelciusBtn = document.querySelector(".celcius");
 let toFahranhiteBtn = document.querySelector(".fahranhite");
 let currentBtn = document.querySelector(".current");
+let humidity = document.querySelector("#humidity");
+let wind = document.querySelector("#wind");
+let desc = document.querySelector("#desc");
+let icon = document.querySelector(".main-icon");
 let date = new Date();
 let week = [
   "Sunday",
@@ -28,6 +32,16 @@ function searchCity(cityIn) {
       temp = response.data.main.temp;
       temperature.innerHTML = `${Math.round(temp)}°C`;
       city.innerHTML = response.data.name;
+      console.log(response.data);
+      humidity.innerHTML = response.data.main.humidity;
+      wind.innerHTML = response.data.wind.speed;
+      const str = response.data.weather[0].description;
+      const str2 = str.charAt(0).toUpperCase() + str.slice(1);
+      desc.innerHTML = str2;
+      icon.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+      );
     });
 }
 day.innerHTML = week[date.getDay()];
