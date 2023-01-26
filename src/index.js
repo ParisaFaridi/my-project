@@ -102,6 +102,7 @@ function displayForecast(forecast) {
             <img src="http://openweathermap.org/img/wn/${
               day.weather[0].icon
             }@2x.png" alt="weather icon" width="42" />
+            <br>
             <span>${Math.round(day.temp.max)}<span>°C</span></span>
       </div>
       `;
