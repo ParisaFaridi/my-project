@@ -83,7 +83,7 @@ function displayTemp(data) {
 function getForecast(lat, lon) {
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
     )
     .then(function (response) {
       displayForecast(response.data.daily);
