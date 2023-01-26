@@ -21,6 +21,8 @@ searchBtn.addEventListener("click", function (event) {
     return;
   }
   searchCity(searchInput.value);
+  toFahranhiteBtn.classList.remove("active");
+  toCelciusBtn.classList.add("active");
 });
 toCelciusBtn.addEventListener("click", function (event) {
   event.preventDefault();
