@@ -85,7 +85,7 @@ function displayTemp(data) {
 function getForecast(lat, lon) {
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
     )
     .then(function (response) {
       displayForecast(response.data.daily);
@@ -104,6 +104,7 @@ function displayForecast(forecast) {
             <img src="http://openweathermap.org/img/wn/${
               day.weather[0].icon
             }@2x.png" alt="weather icon" width="42" />
+            <br>
             <span>${Math.round(day.temp.max)}<span>°C</span></span>
       </div>
       `;
